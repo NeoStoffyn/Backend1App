@@ -1,0 +1,30 @@
+Dag Neo, ik heb wat een samenvatting gemaakt wat je zou kunnen doen als voorbereiding.
+ 
+Gezien je al een vrij goede opdracht voor BE1 hebt gemaakt stel ik voor dat je op basis van je campus-app wat kleine wijzigingen toepast.
+(oorspronkelijk was het de bedoeling een nieuwe applicatie te bouwen maar in dit geval mag je gewoon verder bouwen op de campus-app)
+ 
+Hoofdstuk 3: DTO's en Records
+* Maak van FieldMessage (of een andere klasse naar keuze) een record
+* Optioneel als je tijd over hebt mag je ook een DTO introduceren voor een van entities, map 1 van je entities naar een DTO mag een klasse of records zijn zijn)
+ 
+Hoofdstuk 4:
+* Gebruik 1 of meer validation-annotaties om validatie toe te passen
+ 
+Hoofdstuk 7, 8 en 10 gaan over testen, voeg 1 (of meerdere) test(en) toe voor elk type
+* HTTP Integration Test voorzien
+* Een DataJpaTest schrijven (database integration test) 
+* SpringBootTest schrijven
+ 
+Hoofdstuk 9:
+Maak gebruik van een spring profile gebruiken:
+  * Een prod- en dev- profiel om onderscheid te maken tussen 2 databases, dat mogen 2 h2-databases zijn bijvoorbeeld 
+    * jdbc:h2:mem:campus voor dev-profiel 
+    * prod-profiel bijvoorbeeld jdbc:h2:file:/data/demo (wel het pad veranderen naar een pad naar keuze)
+  * zie naast voorbeelden in cursus ook:
+   * https://docs.spring.io/spring-boot/reference/features/profiles.html
+   * https://www.baeldung.com/spring-boot-h2-database
+  
+Voor hoofdstuk 2 vooral de focus op de theorie (slides en of video's) van REST, dus daar kan ik mogelijk een vraag over stellen maar je hoeft daar geen code voorbereiden.
+Mocht je nog tijd vinden (optioneel) mag je vanzelfsprekend altijd Springdoc/swagger toepassen op je applicatie..
+ 
+Voor hoofdstuk 11 zal ik ook mogelijk wat vragen stellen maar daar hoef je niet speciaal code voorbereiden , daar wek slides en/of video's bekijken.

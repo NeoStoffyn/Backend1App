@@ -8,6 +8,7 @@ import be.neostoffyn.campus.service.UserService;
 import be.neostoffyn.campus.service.ReservationService;
 import be.neostoffyn.campus.service.RoomService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
