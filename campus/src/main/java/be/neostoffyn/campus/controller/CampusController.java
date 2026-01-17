@@ -7,11 +7,15 @@ import be.neostoffyn.campus.exception.Campus.CampusInvalidDataException;
 import be.neostoffyn.campus.exception.Campus.CampusNotFoundException;
 import be.neostoffyn.campus.model.Campus;
 import be.neostoffyn.campus.service.CampusService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.List;
+
+// BRON: https://medium.com/@fingervinicius/how-to-handle-validation-errors-in-spring-boot-to-become-human-friendly-90bd2ec3ed6e
 
 @RestController
 @RequestMapping("/campus")
@@ -42,7 +46,7 @@ public class CampusController {
 
     // POST: /campus
     @PostMapping
-    public ResponseEntity<CampusDto> addCampus(@RequestBody Campus campus) {
+    public ResponseEntity<CampusDto> addCampus(@Valid @RequestBody Campus campus) {
         Campus savedCampus = campusService.saveCampus(campus);
         return new ResponseEntity<>(CampusDto.from(savedCampus), HttpStatus.CREATED);
     }
@@ -63,5 +67,16 @@ public class CampusController {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new FieldMessage("campus", ex.getMessage()));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<FieldMessage> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        String msg = ex.getBindingResult().getFieldErrors().stream()
+                .map(e -> e.getField() + " " + e.getDefaultMessage())
+                .collect(java.util.stream.Collectors.joining(", "));
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new FieldMessage("validation", msg));
     }
 }

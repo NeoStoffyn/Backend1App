@@ -1,15 +1,21 @@
 package be.neostoffyn.campus.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 @Entity
 public class Campus {
 
     @Id
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
+    @NotBlank(message = "Address is mandatory")
     private String address;
+
+    @PositiveOrZero(message = "Parking spots must be zero or positive")
     private int parkingSpots;
 
     @OneToMany(mappedBy = "campus", cascade = CascadeType.ALL)
